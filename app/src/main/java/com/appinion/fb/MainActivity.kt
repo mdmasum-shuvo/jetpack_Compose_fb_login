@@ -37,7 +37,6 @@ import com.facebook.login.LoginResult
 
 
 class MainActivity : ComponentActivity() {
-    private var callbackManager = CallbackManager.Factory.create()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,7 +52,7 @@ class MainActivity : ComponentActivity() {
                         verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        FacebookButton({}, {})
+                        FacebookButton()
                     }
 
                 }
@@ -64,11 +63,8 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun FacebookButton(
-    onAuthComplete: () -> Unit,
-    onAuthError: (Exception) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val scope = rememberCoroutineScope()
     var imgUrl = remember {
         mutableStateOf("")
     }
@@ -94,7 +90,6 @@ fun FacebookButton(
             }
 
             override fun onError(error: FacebookException) {
-                onAuthError(error)
                 Log.e("facebook", "on error call$error")
             }
 
