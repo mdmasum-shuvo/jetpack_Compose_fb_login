@@ -111,33 +111,6 @@ fun FacebookButton(
                 parameters.putString("fields", "id,name,email,link")
                 request.parameters = parameters
                 request.executeAsync()
-                /*    scope.launch {
-                        val token = result.accessToken.token
-                        val credential = FacebookAuthProvider.getCredential(token)
-                        val authResult = Firebase.auth.signInWithCredential(credential).await()
-
-
-                        if (authResult.user != null) {
-                            onAuthComplete()
-                            //imgUrl.value = authResult?.user?.photoUrl.toString()
-                            name.value = authResult?.user?.uid ?: ""
-                            //phone.value = authResult?.user?.photoUrl?: ""
-                            Thread {
-                                try {
-                                    val newURL = URL(authResult?.user?.photoUrl.toString())
-                                    val profilePic = BitmapFactory.decodeStream(
-                                        newURL.openConnection().getInputStream()
-                                    )
-                                    Log.e("","")
-                                } catch (e: IOException) {
-                                    e.printStackTrace()
-                                }
-                            }.start()
-
-                        } else {
-                            onAuthError(IllegalStateException("Unable to sign in with Facebook"))
-                        }
-                    }*/
             }
         })
 
